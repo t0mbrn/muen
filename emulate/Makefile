@@ -25,7 +25,7 @@ endif
 ifeq ($(MUEN_EFI),)
 GRUB_MODS_PATH ?= $(CONTRIB_BUILD_DIR)/i386-pc/lib/grub/i386-pc
 GRUB_MKRESCUE  ?= $(CONTRIB_BUILD_DIR)/i386-pc/bin/grub-mkrescue
-QEMU_OPTS = -curses
+QEMU_OPTS =
 GRUB_CFG = grub.cfg
 else
 GRUB_MODS_PATH ?= $(CONTRIB_BUILD_DIR)/x86_64-efi/lib/grub/x86_64-efi
@@ -63,7 +63,9 @@ QEMU_OPTS += \
 	-device qemu-xhci,id=xhci,bus=pcie.0,addr=3.0 \
 	-device usb-tablet,bus=xhci.0 \
 	-device rtl8139,bus=pcie.0,addr=4.0,netdev=net1 \
-	-netdev user,id=net1,net=192.168.253.0/24,dhcpstart=192.168.253.100
+	-netdev user,id=net1,net=192.168.253.0/24,dhcpstart=192.168.253.100 \
+	-drive if=none,media=cdrom,id=stick,file=../../mugenhwcfg-live/mugenhwcfg-live-amd64.hybrid.img \
+	-device usb-storage,bus=xhci.0,drive=stick -boot d
 
 QEMU_CMD ?= $(QEMU_BIN) $(QEMU_OPTS) $(QEMU_EXTRA_OPTS)
 
