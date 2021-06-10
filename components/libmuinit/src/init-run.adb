@@ -50,6 +50,11 @@ is
          Status.Error;
          return;
       end if;
+      Commands.Wait_For_Init (Success => Success);
+      if not Success then
+         Status.Error (Diagnostic => Mucontrol.Status.DIAG_UNEXPECTED_CMD);
+         return;
+      end if;
 
       Commands.Wait_For_Sync (Success => Success);
       if Success then

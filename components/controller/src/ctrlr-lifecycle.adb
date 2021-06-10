@@ -207,6 +207,10 @@ is
                Next_State := FSM_Resetting;
             elsif Subject_State = Mucontrol.Status.STATE_FINISHED then
                Next_State := FSM_Finished;
+            elsif States (ID).Current_State = FSM_Running and
+              Subject_State = Mucontrol.Status.STATE_INITIAL
+            then
+               Next_State := FSM_Initial;
             elsif Has_Error (Subject_State => Subject_State) then
                Next_State := FSM_Error;
             end if;

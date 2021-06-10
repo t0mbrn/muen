@@ -49,6 +49,21 @@ is
 
    -------------------------------------------------------------------------
 
+   procedure Wait_For_Init (Success : out Boolean)
+   is
+      Cmd : Mucontrol.Command.Command_Type := Mucontrol.Command.Instance.Get;
+   begin
+      if Cmd /= Mucontrol.Command.CMD_NOP and
+        Cmd /= Mucontrol.Command.CMD_SELF_CTRL
+      then
+         Mucontrol.Command.Instance.Wait_For_Next (Cmd => Cmd);
+      end if;
+      Success := Cmd = Mucontrol.Command.CMD_NOP
+        or Cmd = Mucontrol.Command.CMD_SELF_CTRL;
+   end Wait_For_Init;
+
+   -------------------------------------------------------------------------
+
    procedure Wait_For_Prepare (Success : out Boolean)
    is
       Cmd : Mucontrol.Command.Command_Type := Mucontrol.Command.CMD_ERASE;

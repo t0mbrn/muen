@@ -36,6 +36,10 @@ is
      (Success : out Boolean;
       Erase   : out Boolean);
 
+   --  Wait for initial or self-control command. Success is True if the
+   --  received command was either init or self-control.
+   procedure Wait_For_Init (Success : out Boolean);
+
    --  Wait for prepare or self-control command. Success is True if the
    --  received command was either prepare or self-control.
    procedure Wait_For_Prepare (Success : out Boolean);
