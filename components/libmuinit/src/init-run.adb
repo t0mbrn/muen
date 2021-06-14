@@ -101,6 +101,9 @@ is
                   Status.Set
                     (New_State => Mucontrol.Status.STATE_INITIALIZING);
                end if;
+            else
+               Status.Error
+                 (Diagnostic => Mucontrol.Status.DIAG_UNEXPECTED_CMD);
             end if;
          else
             Status.Error (Diagnostic => Mucontrol.Status.DIAG_UNEXPECTED_CMD);
