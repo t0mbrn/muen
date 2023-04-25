@@ -141,7 +141,7 @@ def add_ram_memory(xml_spec, binary, binary_end, ram_size_mb):
                      type="subject")
 
     rsp = src_spec.xpath("/component/requires/vcpu/registers/gpr/rsp")[0]
-    rsp.text = muutils.int_to_ada_hex(binary_end + ram_size - 8)
+    rsp.text = muutils.int_to_ada_hex(binary_end + ram_size)
     print("* Setting RSP to " + rsp.text)
 
     return binary_end + ram_size
