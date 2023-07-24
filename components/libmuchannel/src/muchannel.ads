@@ -57,7 +57,34 @@ package Muchannel is
    --  Type of channel header fields.
    type Header_Field_Type is mod 2 ** 64;
 
-   --  Returns True if the channel is currently active.
+   --- ```
+   --- -- Returns True if the channel is currently active.
+   --- declare
+   ---      with Muchannel.Writer;
+   ---      package Minstance is new Muchannel
+   ---       (Element_Type => Integer, Elements => 100, Null_Element => 0,
+   ---        Protocol     => 2**64);
+   ---
+   ---      package Write is new Minstance.Writer;
+   ---
+   ---
+   ---      Channel : Minstance.Channel_Type;
+   ---      Epoch   : Minstance.Header_Field_Type := 69;
+   ---
+   ---      Result  : Boolean := False;
+   --- begin
+   ---
+   ---      Write.Initialize (Channel, Epoch);
+   ---      Write.Write(Channel, 2);
+   ---
+   ---      Minstance.Is_Active (Channel, Result);
+   ---
+   ---      Ahven.Assert
+   ---       (Condition => Result,
+   ---        Message   => "Channel was not found to be active.");
+   --- end;
+   --- ```
+
    procedure Is_Active
      (Channel :     Channel_Type;
       Result  : out Boolean)
