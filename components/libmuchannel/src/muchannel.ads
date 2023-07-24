@@ -67,15 +67,15 @@ package Muchannel is
    ---
    ---      package Write is new Minstance.Writer;
    ---
-   ---
    ---      Channel : Minstance.Channel_Type;
    ---      Epoch   : Minstance.Header_Field_Type := 69;
    ---
    ---      Result  : Boolean := False;
+   ---
    --- begin
    ---
    ---      Write.Initialize (Channel, Epoch);
-   ---      Write.Write(Channel, 2);
+   ---      --Write.Write(Channel, 2);
    ---
    ---      Minstance.Is_Active (Channel, Result);
    ---

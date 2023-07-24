@@ -44,7 +44,43 @@ is
       Global  => null,
       Depends => (Channel =>+ null);
 
-   --  Write element to given channel.
+   --- ```
+   --- --  Write element to given channel.
+   --- declare
+   ---      with Muchannel;
+   ---      with Ada.Text_IO;
+   ---      package Minstance is new Muchannel
+   ---       (Element_Type => Integer, Elements => 100, Null_Element => 0,
+   ---        Protocol     => 2**64);
+   ---
+   ---      package Write is new Minstance.Writer;
+   ---      with Muchannel.Readers;
+   ---      package Read is new Minstance.Readers;
+   ---
+   ---      Channel : Minstance.Channel_Type;
+   ---      Epoch   : Minstance.Header_Field_Type := 69;
+   ---
+   ---      Type Test_Data is array (0 .. 99) of Integer;
+   ---      Test_Array : Test_Data := (0 => 2, others => 0);
+   ---
+   ---      Result : Integer;
+   ---      Reader : Read.Reader_Type;
+   ---      ResultT: Read.Result_Type;
+   ---
+   --- begin
+   ---
+   ---      Write.Initialize (Channel, Epoch);
+   ---      Write.Write(Channel, 2);
+   ---
+   ---      Read.Read(Channel, Reader, Result, ResultT);
+   ---
+   --- --     Ahven.Assert
+   --- --     (Condition => Result = 2,
+   --- --      Message   => "Incorrect Channel Data");
+   ---
+   --- end;
+   --- ```
+
    procedure Write
      (Channel : in out Channel_Type;
       Element :        Element_Type)
