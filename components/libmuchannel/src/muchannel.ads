@@ -75,7 +75,6 @@ package Muchannel is
    --- begin
    ---
    ---      Write.Initialize (Channel, Epoch);
-   ---      --Write.Write(Channel, 2);
    ---
    ---      Minstance.Is_Active (Channel, Result);
    ---

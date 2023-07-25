@@ -74,9 +74,9 @@ is
    ---
    ---      Read.Read(Channel, Reader, Result, ResultT);
    ---
-   --- --     Ahven.Assert
-   --- --     (Condition => Result = 2,
-   --- --      Message   => "Incorrect Channel Data");
+   ---      Ahven.Assert
+   ---      (Condition => Result = 2,
+   ---       Message   => "Incorrect Channel Data");
    ---
    --- end;
    --- ```
