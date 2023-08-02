@@ -29,7 +29,7 @@
 package Muchannel_Constants
 is
 
-   --  Size of channel header in bytes.
+   --- Size of channel header in bytes.
    Header_Size : constant Positive := 64;
 
 end Muchannel_Constants;

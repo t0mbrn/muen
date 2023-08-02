@@ -30,35 +30,35 @@ with Interfaces;
 
 with Muchannel_Constants;
 
---  Muen shared memory channels.
+-- Muen shared memory channels.
 --
---  Muen shared memory channels are an implementation of the SHMStream
---  Version 2 IPC protocol (shmstream) as specified by 'SHMStream Version 2 IPC
---  Interface', Robert Dorn, 2013, unpublished.
+-- Muen shared memory channels are an implementation of the SHMStream
+-- Version 2 IPC protocol (shmstream) as specified by 'SHMStream Version 2 IPC
+-- Interface', Robert Dorn, 2013, unpublished.
 generic
 
-   --  Elements transported via channel instance.
+   --- Elements transported via channel instance.
    type Element_Type is private;
 
-   --  Capacity of channel in number of elements.
+   --- Capacity of channel in number of elements.
    Elements : Positive;
 
-   --  Null element.
+   --- Null element.
    Null_Element : Element_Type;
 
-   --  Protocol identifier.
+   --- Protocol identifier.
    Protocol : Interfaces.Unsigned_64;
 
 package Muchannel is
 
-   --  Communication channel used by reader and writer.
+   --- Communication channel used by reader and writer.
    type Channel_Type is limited private;
 
-   --  Type of channel header fields.
+   --- Type of channel header fields.
    type Header_Field_Type is mod 2 ** 64;
 
+   --- Returns True if the channel is currently active.
    --- ```
-   --- -- Returns True if the channel is currently active.
    --- declare
    ---      with Muchannel.Writer;
    ---      package Minstance is new Muchannel
@@ -93,7 +93,7 @@ package Muchannel is
 
 private
 
-   --  "SHMStream20=", base64-encoded.
+   --- "SHMStream20=", base64-encoded.
    SHMStream_Marker : constant := 16#4873_12b6_b79a_9b6d#;
 
    for Header_Field_Type'Size use 64;
@@ -101,7 +101,7 @@ private
    Element_Size : constant Header_Field_Type
      := Header_Field_Type'Mod (Element_Type'Size / 8);
 
-   --  Channel header as specified by SHMStream v2 protocol.
+   -- Channel header as specified by SHMStream v2 protocol.
    type Header_Type is record
       Transport : Header_Field_Type with Atomic;
       Epoch     : Header_Field_Type with Atomic;
@@ -126,7 +126,7 @@ private
       WC        at 56 range 0 .. 63;
    end record;
 
-   --  Channel data stored as array of elements.
+   --- Channel data stored as array of elements.
    type Data_Range is new Natural range 0 .. Elements - 1;
    type Data_Type  is array (Data_Range) of Element_Type
      with Pack;
@@ -137,7 +137,7 @@ private
    end record
      with Volatile, Pack;
 
-   --  Null epoch used for inactive/disabled channels.
+   --- Null epoch used for inactive/disabled channels.
    Null_Epoch : constant Header_Field_Type := 0;
 
 end Muchannel;

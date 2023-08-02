@@ -40,7 +40,7 @@ is
 
    type Reader_Type is private;
 
-   --  Returns True if the channel is active and has pending data to be read.
+   --- Returns True if the channel is active and has pending data to be read.
    procedure Has_Pending_Data
      (Channel :     Channel_Type;
       Reader  :     Reader_Type;
@@ -49,7 +49,7 @@ is
       Global  => null,
       Depends => (Result => (Channel, Reader));
 
-   --  Read next element from given channel.
+   --- Read next element from given channel.
    procedure Read
      (Channel :        Channel_Type;
       Reader  : in out Reader_Type;
@@ -59,7 +59,7 @@ is
       Global  => null,
       Depends => ((Reader, Element, Result) => (Channel, Reader));
 
-   --  Drain all current channel elements.
+   --- Drain all current channel elements.
    procedure Drain
      (Channel :        Channel_Type;
       Reader  : in out Reader_Type)
@@ -67,7 +67,7 @@ is
       Global  => null,
       Depends => (Reader =>+ Channel);
 
-   --  Reset reader element index.
+   --- Reset reader element index.
    procedure Reset (Reader : in out Reader_Type)
    with
       Global  => null,

@@ -30,7 +30,7 @@ generic
 package Muchannel.Writer
 is
 
-   --  Initialize channel with given epoch.
+   --- Initialize channel with given epoch.
    procedure Initialize
      (Channel : out Channel_Type;
       Epoch   :     Header_Field_Type)
@@ -38,12 +38,14 @@ is
       Global  => null,
       Depends => (Channel => Epoch);
 
-   --  Deactivate channel.
+   --- Deactivate channel.
    procedure Deactivate (Channel : in out Channel_Type)
    with
       Global  => null,
       Depends => (Channel =>+ null);
 
+   --- Test der DokuFunktion
+   --- in ``mehreren`` Zeilen
    --- ```
    --- --  Write element to given channel.
    --- declare
